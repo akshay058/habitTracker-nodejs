@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <!-- fontawesome cdn -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -24,42 +25,52 @@
   </head>
   <body>
     <!-- nab bar -->
-    <nav class="navbar navbar-dark bg-dark" id="nav_bar">
-      <h2 class="navbar_heading">Habit Tracker App</h2>
-    </nav>
+    <!-- <nav class="navbar navbar-dark bg-dark" id="nav_bar"> -->
+    <div
+      class="container-fluid"
+      style="text-align: center; margin-top: 50px; color: azure"
+    >
+      <h2 class="heading">Habit Tracker App</h2>
+    </div>
+    <!-- </nav> -->
     <div class="home_container">
-      <%- include('./_header.ejs')%>
+      <%- include('./_addHabit.ejs')%>
       <div class="display_container">
         <!-- week and daily button -->
         <form action="handle-view" method="POST" class="home_form">
           <%if(user[0].view === "daily"){%>
-          <button
+          <!-- <button
             disabled
             type="submit"
             class="btn btn-outline-danger disabled"
           >
             Daily
-          </button>
-          <button type="submit" class="btn btn-outline-warning active">
-            Weely
+          </button> -->
+          <button type="submit" class="btn btn-outline-dark active">
+            Move To Weekly Mode
           </button>
           <%}else {%>
-          <button type="submit" class="btn btn-outline-danger active">
-            Daily
+          <button type="submit" class="btn btn-outline-dark active">
+            Move To Daily Mode
           </button>
-          <button
-            type="submit"
-            disabled
-            class="btn btn-outline-warning disabled"
-          >
-            Weely
-          </button>
+          <!-- <button type="submit" class="btn btn-outline-warning disabled">
+            Weekly
+          </button> -->
           <%}%>
         </form>
         <div class="list_container">
           <%habit.forEach((item)=>{%>
-          <div class="item_container">
-            <p><%= item.content%></p>
+          <div class="item_container d-flex flex-column flex-wrap mb-2">
+            <div
+              style="
+                margin-bottom: 3%;
+                color: rgb(173, 51, 46);
+                font-size: 1.2em;
+                font-weight: bold;
+              "
+            >
+              <%= item.content%>
+            </div>
             <!-- toggle b/w daily list and the weekly list -->
             <%if(user[0].view === "daily"){%>
             <div class="days_container">
@@ -73,32 +84,43 @@
               <%}else {%>
               <p><%=total_roundOFF_days%></p>
               <%}%>
+              <!-- delete habit container -->
+              <div class="remove_container ms-4">
+                <a href="/remove-habit/?id=<%= item._id%>"
+                  ><i class="fas fa-trash"></i
+                ></a>
+              </div>
             </div>
             <%}else {%>
-            
+
             <div class="dates_container">
               <!-- display complete week  -->
               <% days.forEach((day)=>{ let found = false, status = "";
               item.dates.find(function (res){ if(res.date === day.date){ found =
               true; status = res.complete; } }) %>
-                <div class="action_container">
-                <p><%= day.date%></p>
+              <div class="action_container">
+                <div style="border: 2px solid black; margin-bottom: 20%">
+                  <p style="color: rgb(85, 29, 29)"><b><%= day.day%></b></p>
+                </div>
+                <p style="color: black; margin-bottom: 20%"><%= day.date%></p>
+
                 <!-- switch b/w done, none, no -->
                 <a href="/update-status/?id=<%= item._id%>&date=<%=day.date%>"
                   ><%if(found && status === "yes"){%>
-                  <i class="far fa-calendar-check"></i>
+                  <i
+                    class="far fa-calendar-check fa-2x"
+                    style="color: green"
+                  ></i>
                   <%} else if(found && status==="no") {%>
-                  <i class="far fa-calendar-times"></i>
+                  <i class="far fa-calendar-times fa-2x" style="color: red"></i>
                   <%}else {%>
-                  <i class="far fa-calendar-minus"></i>
+                  <i class="far fa-calendar-minus fa-2x"></i>
                   <%}%>
-                  </a>
-                <p><%= day.day%></p>
-                </div>
-                <%})%>
+                </a>
               </div>
+              <%})%>
               <!-- delete habit container -->
-              <div class="remove_container">
+              <div class="remove_container ms-4">
                 <a href="/remove-habit/?id=<%= item._id%>"
                   ><i class="fas fa-trash"></i
                 ></a>

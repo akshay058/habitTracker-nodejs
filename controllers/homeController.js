@@ -119,7 +119,7 @@ exports.newHabit = async (req, res) => {
     let dates = habit.dates,
       tzoffset = new Date().getTimezoneOffset() * 60000;
     var today = new Date(Date.now() - tzoffset).toISOString().slice(0, 10);
-    const item = await dates.find({});
+    const item = dates.find();
     if (item.date === today) {
       console.log("Habit exists!");
       console.log("error_msg", "Habit already exists!");
