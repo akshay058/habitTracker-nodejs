@@ -5,6 +5,7 @@
   align-items: center;
 }
 
+/* habit creation css */
 .new_habit_form {
   width: 64vw;
   display: flex;

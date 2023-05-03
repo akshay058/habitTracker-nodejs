@@ -1,5 +1,6 @@
 const Habit = require("../models/habit");
 const User = require("../models/user");
+const myHabit = require("../assets/javascript/habit");
 
 // welcome screen to login as default
 exports.welcome = (req, res) => {
@@ -32,19 +33,16 @@ exports.home = async (req, res) => {
   try {
     const user = await User.find({ name: "akshay" });
     const habit = await Habit.find({});
-    // if (!habits) {
-    //   console.log("No Habits");
-    // }
-    // else{
+
     // storing upcomming 7 days
     let days = [];
-    days.push(getDate(0));
-    days.push(getDate(1));
-    days.push(getDate(2));
-    days.push(getDate(3));
-    days.push(getDate(4));
-    days.push(getDate(5));
-    days.push(getDate(6));
+    days.push(myHabit.getDate(0));
+    days.push(myHabit.getDate(1));
+    days.push(myHabit.getDate(2));
+    days.push(myHabit.getDate(3));
+    days.push(myHabit.getDate(4));
+    days.push(myHabit.getDate(5));
+    days.push(myHabit.getDate(6));
     // sending data to home.ejs file
     return res.render("home", { habit, days, user });
 
@@ -52,60 +50,6 @@ exports.home = async (req, res) => {
   } catch (err) {
     console.log("error", err);
   }
-};
-
-function getDate(n) {
-  let date = new Date();
-  date.setDate(date.getDate() - n);
-  let new_date = date
-    .toLocaleDateString("pt-br")
-    .split("/")
-    .reverse()
-    .join("-");
-  let day = "";
-  switch (date.getDay()) {
-    case 0:
-      day = "Sun";
-      break;
-    case 1:
-      day = "Mon";
-      break;
-    case 2:
-      day = "Tue";
-      break;
-    case 3:
-      day = "Wed";
-      break;
-    case 4:
-      day = "Thu";
-      break;
-    case 5:
-      day = "Fri";
-      break;
-    case 6:
-      day = "Sat";
-      break;
-  }
-  return { date: new_date, day };
-}
-
-// handle view of user
-exports.handleview = async (req, res) => {
-  User.find({ name: "akshay" }).then((user) => {
-    // changing user view
-    user[0].view = user[0].view === "daily" ? "Weekly" : "daily";
-    console.log("changes user view :: ", user[0]);
-    user[0]
-      .save()
-      .then((user) => {
-        console.log("change view User :: ", user);
-        res.redirect("back");
-      })
-      .catch((err) => {
-        console.log("error while changing view of the user :: ", err);
-        return;
-      });
-  });
 };
 
 // add new habit
@@ -159,6 +103,25 @@ exports.newHabit = async (req, res) => {
       console.log(err);
     }
   }
+};
+
+// handle view of user
+exports.handleview = async (req, res) => {
+  User.find({ name: "akshay" }).then((user) => {
+    // changing user view
+    user[0].view = user[0].view === "daily" ? "Weekly" : "daily";
+    console.log("changes user view :: ", user[0]);
+    user[0]
+      .save()
+      .then((user) => {
+        console.log("change view User :: ", user);
+        res.redirect("back");
+      })
+      .catch((err) => {
+        console.log("error while changing view of the user :: ", err);
+        return;
+      });
+  });
 };
 
 //  toggle between status

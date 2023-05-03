@@ -14,18 +14,39 @@
     <title>Habit Tracker Login</title>
     <link rel="stylesheet" href="../assets/css/login.css" type="text/css" />
   </head>
-  <body class="login">
-    <div class="heading_container">
-      <h1 class="display-1">Habit Tracker App</h1>
-    </div>
-    <!-- form to login  -->
-    <div class="form_container">
-      <form action="/login" method="GET">
-        <h6 class="display-6">Click Login Button To login as Default User</h6>
-        <div class="btn_container">
-          <button class="btn btn-outline-dark" id="btn">Login Me</button>
+  <body>
+    <!-- Login form -->
+    <div class="container">
+      <h1>Habit Tracker App</h1>
+      <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+          <form action="/login" method="GET">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Enter your name"
+                disabled
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter your password"
+                disabled
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="btn">
+              Default Login
+            </button>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </body>
 </html>
