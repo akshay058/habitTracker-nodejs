@@ -1,5 +1,5 @@
 h1 {
-  color: aliceblue;
+  color: rgb(239, 235, 236);
 }
 
 .container {
@@ -9,4 +9,5 @@ h1 {
   height: 80vh;
   text-align: center;
   color: aliceblue;
+  border-radius: 10%;
 }
