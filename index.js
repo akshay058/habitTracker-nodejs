@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/mongoose");
 const bodyparser = require("body-parser");
@@ -17,6 +18,7 @@ app.use("/assets", express.static("./assets"));
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
+console.log(process.env.MONGO_ATLAS_CONNECTION);
 
 app.use("/", require("./routes"));
 

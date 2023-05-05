@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost:27017/habit-tracker", {
+const URI = process.env.MONGO_ATLAS_CONNECTION;
+mongoose.connect(URI, {
   useNewUrlParser: true, // to avoid warning
   useUnifiedTopology: true, // to avoid warning
 });
