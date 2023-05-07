@@ -13,10 +13,26 @@
 
 Used NodeJs , Used Mongodb, EJS , HTML ,CSS, JavaScript Technologies.
 
+## Screenshots
+
+![App Screenshot](/habit1.jpg?raw=true "Optional Title")
+
+![App Screenshot](/habit2.jpg?raw=true "Optional Title")
+
+![App Screenshot](/habit3.jpg?raw=true "Optional Title")
+
+![App Screenshot](/habit4.jpg?raw=true "Optional Title")
+
 ### Directory Structure
 
-|-- habitTracker
+|-- HABITTRACKER
+|-- .env
 |-- .gitignore
+|-- directoryList.md
+|-- habit1.jpg
+|-- habit2.jpg
+|-- habit3.jpg
+|-- habit4.jpg
 |-- index.js
 |-- package-lock.json
 |-- package.json
