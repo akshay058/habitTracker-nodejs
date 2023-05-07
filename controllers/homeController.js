@@ -168,7 +168,7 @@ exports.statesChange = async (req, res) => {
   }
 };
 
-// removing habit
+// removing habit controller
 exports.removeHabit = async (req, res) => {
   try {
     let id = req.query.id;
