@@ -154,7 +154,7 @@ exports.statesChange = async (req, res) => {
       dates.push({ date: d, complete: "yes" });
       habit.days += 1;
     }
-    // save habit
+    // save habit to database
     habit.dates = dates;
     habit
       .save()
