@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: "config.env" });
 const mongoose = require("mongoose");
 const URI = process.env.MONGO_ATLAS_CONNECTION;
 mongoose.connect(URI, {
