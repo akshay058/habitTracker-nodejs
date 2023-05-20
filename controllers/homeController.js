@@ -69,7 +69,7 @@ exports.newHabit = async (req, res) => {
       console.log("error_msg", "Habit already exists!");
       res.redirect("back");
     } else {
-      dates.push({ date: today, complete: "none" });
+      dates.push({ date: today, complete: "none" }); // setting date in array of dates
       habit.dates = dates;
       habit.days = 0;
       habit
